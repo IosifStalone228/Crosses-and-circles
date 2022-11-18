@@ -1,11 +1,11 @@
 board = list(range(1,10))
 
-def draw_board(board):
+def draw_board(board): #Рисуем доску 3*3(фиксированно)
    for i in range(3):
       print("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
       print("-" * 13)
 
-def player_input(player_token):
+def player_input(player_token): #Запрашиваем у игрока клетку, в которую он хочет поставить свой знак, проверяем корректность номера клеточки, вносим значение.
     yes = False
     while not yes:
         player_answer = input("Куда поставим " + player_token + "? ")
@@ -23,15 +23,15 @@ def player_input(player_token):
         else:
             print("Некорректный ввод. Введите число от 1 до 9.")
 
-def check_win(board):
+def check_win(board):   #Проверка выигрышных комбинаций
    win_coord = ((0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6))
    for coord in win_coord:
        if board[coord[0]] == board[coord[1]] == board[coord[2]]:
           return board[coord[0]]
    return False
 
-def main(board):
-    counter = 0
+def main(board): #Сама игра, рисуем поле, определяем знак игрока и вводим его в выбранную игроком клеточку, проверяем условия победы/ничьи.
+    counter = 0     
     win = False
     while not win:
         draw_board(board)
@@ -49,7 +49,7 @@ def main(board):
         if counter == 9:
             print("Ничья!")
             break
-    draw_board(board)
+    draw_board(board)   #После каждого цикла выводим поле с изменёнными значениями клеток.
 main(board)
 
 input("Нажмите Enter для выхода!")
